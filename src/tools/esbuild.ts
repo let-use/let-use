@@ -21,7 +21,7 @@ export default defineTool({
     ) as EsbuildConfig
 
     let name, args
-    if (ctx.args[0].startsWith('@')) {
+    if (ctx.args[0]?.startsWith('@')) {
       ;[name, ...args] = ctx.args
       name = name.slice(1)
     } else {

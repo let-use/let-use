@@ -4,6 +4,15 @@
   "author": "unbyte <i@shangyes.net>",
   "license": "MIT",
   "type": "module",
+  "keywords": [
+    "build-tool",
+    "config"
+  ],
+  "repository": "git+https://github.com/let-use/let-use.git",
+  "bugs": {
+    "url": "https://github.com/let-use/let-use/issues"
+  },
+  "homepage": "https://github.com/let-use/let-use/tree/master/#readme",
   "bin": {
     "use": "dist/index.js"
   },
