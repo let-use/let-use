@@ -1,0 +1,6 @@
+{
+  "*.{mjs,js,ts,tsx}": [
+    "pnpm run use eslint --fix --max-warnings 0",
+    "pnpm run use prettier --write --ignore-unknown"
+  ]
+}

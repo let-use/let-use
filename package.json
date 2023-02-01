@@ -1,0 +1,30 @@
+{
+  "name": "let-use",
+  "version": "0.1.0",
+  "author": "unbyte <i@shangyes.net>",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "use": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "pnpm run use is-ci || pnpm run use husky install",
+    "use": "tsx src/index.ts",
+    "dev": "pnpm run use esbuild --watch",
+    "build": "pnpm run use esbuild",
+    "fmt": "pnpm run use prettier --write \"./**/*.{ts,json}\"",
+    "lint": "pnpm run use eslint \"./**/*.ts\""
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "fast-glob": "^3.2.12"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "^4.9.5"
+  }
+}

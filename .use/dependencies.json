@@ -1,0 +1,17 @@
+{
+  "lint": {
+    "eslint": "latest",
+    "@typescript-eslint/parser": "latest"
+  },
+  "fmt": {
+    "prettier": "latest"
+  },
+  "git": {
+    "lint-staged": "latest",
+    "husky": "latest",
+    "is-ci": "latest"
+  },
+  "build": {
+    "esbuild": "latest"
+  }
+}
