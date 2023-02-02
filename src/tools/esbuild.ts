@@ -1,14 +1,16 @@
 import { defineTool } from './'
 import { readFile } from 'node:fs/promises'
-import chalk from 'chalk'
 
 export default defineTool({
   name: 'esbuild',
   async run(ctx) {
-    const configPath = await ctx.find('config', [
-      'esbuild.json',
-      'esbuild.config.json',
-    ])
+    const mode = ctx.mode
+    const configPath = await ctx.find(
+      'config',
+      mode
+        ? [`esbuild.${mode}.json`, `esbuild.config.${mode}.json`]
+        : ['esbuild.json', 'esbuild.config.json'],
+    )
 
     if (!configPath) {
       // call esbuild directly
@@ -16,34 +18,13 @@ export default defineTool({
       return
     }
 
-    const config = JSON.parse(
-      await readFile(configPath, 'utf-8'),
-    ) as EsbuildConfig
+    const config = JSON.parse(await readFile(configPath, 'utf-8')) as string[]
 
-    let name, args
-    if (ctx.args[0]?.startsWith('@')) {
-      ;[name, ...args] = ctx.args
-      name = name.slice(1)
-    } else {
-      name = config.default
-      args = ctx.args
-    }
-
-    const modeArgs = config[name]
-
-    if (!modeArgs || !Array.isArray(modeArgs)) {
-      process.stderr.write(
-        `${chalk.red(`mode "${chalk.bold(name || 'default')}" is invalid`)}\n`,
-      )
+    if (!Array.isArray(config)) {
+      ctx.log(new Error('invalid config file'))
       process.exit(1)
     }
 
-    await ctx.execute([...modeArgs, ...args])
+    await ctx.execute([...config, ...ctx.args])
   },
 })
-
-type EsbuildConfig = {
-  default: string
-} & {
-  [name: string]: string[]
-}

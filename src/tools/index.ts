@@ -6,6 +6,7 @@ import jest from './jest'
 import tsup from './tsup'
 import install from './internal/install'
 import esbuild from './esbuild'
+import webpack from './webpack'
 
 export interface ITool {
   name: string
@@ -13,14 +14,20 @@ export interface ITool {
 }
 
 export interface IToolContext {
-  readonly args: string[]
+  readonly mode?: string
+  readonly args: readonly string[]
   readonly find: (
     tag: string,
     pattern: string | string[],
   ) => Promise<string | undefined>
   // relative path
   readonly resolve: (tag: string, path?: string) => string
-  readonly execute: (args: string[]) => Promise<void>
+  readonly execute: (args: readonly string[]) => Promise<void>
+  readonly log: {
+    (msg: string): void
+    (error: Error): void
+    (tag: string, content: string): void
+  }
 }
 
 const TOOLS = collectTools(
@@ -32,6 +39,7 @@ const TOOLS = collectTools(
   lintStaged,
   prettier,
   tsup,
+  webpack,
 )
 
 function collectTools(...tools: ITool[]) {

@@ -8,32 +8,31 @@ import fallback from './tools/internal/fallback'
 
 const USE_DIR = join(process.cwd(), '.use')
 
-export async function runTool(name: string | undefined, args: string[]) {
-  if (!name) {
+export async function runTool(cmd: string | undefined, args: string[]) {
+  if (!cmd) {
     process.stderr.write(chalk.red('no tool specified'))
     process.exit(1)
   }
-  process.stderr.write(formatCmd([name, ...args].join(' ')))
-  const ctx = createToolContext(name, args)
+  const { name, mode } = parseNameAndMode(cmd)
+  printCmd(name, args)
   const tool = getTool(name) ?? fallback
+  const ctx = new ToolContext(name, mode, args)
   await tool.run(ctx)
 }
 
-function createToolContext(name: string, args: string[]): IToolContext {
-  const find = createFind()
-  const resolve = createResolve()
-  const execute = createExecute(name)
-  return {
-    args,
-    find,
-    resolve,
-    execute,
-  }
-}
+class ToolContext implements IToolContext {
+  private readonly ensureDir = mkdir(USE_DIR, {
+    recursive: true,
+  })
 
-function createFind(): IToolContext['find'] {
-  return async (tag, p) => {
-    const results = await fg(p, {
+  constructor(
+    public name: string,
+    public mode: string | undefined,
+    public readonly args: readonly string[],
+  ) {}
+
+  async find(tag: string, pattern: string | string[]) {
+    const results = await fg(pattern, {
       absolute: true,
       dot: true,
       cwd: USE_DIR,
@@ -46,28 +45,21 @@ function createFind(): IToolContext['find'] {
     }
     print(tag, chalk.gray('none'))
   }
-}
 
-function createResolve(): IToolContext['resolve'] {
-  return (tag, path) => {
+  resolve(tag: string, path: string | undefined): string {
     const dir = path ? join(USE_DIR, path) : USE_DIR
     const result = relative(process.cwd(), dir)
     print(tag, chalk.green(result))
     return result
   }
-}
 
-function createExecute(name: string): IToolContext['execute'] {
-  const ensureDir = mkdir(USE_DIR, {
-    recursive: true,
-  })
-  return async (args) => {
-    await ensureDir
+  async execute(args: readonly string[]): Promise<void> {
+    await this.ensureDir
     const exitCode = await spawnAsync('npm', [
       'exec',
       '--prefix',
       USE_DIR,
-      name,
+      this.name,
       '--',
       ...args,
     ])
@@ -75,11 +67,39 @@ function createExecute(name: string): IToolContext['execute'] {
       process.exit(exitCode)
     }
   }
+
+  log(msg: string): void
+  log(error: Error): void
+  log(tag: string, content: string): void
+  log(...args: [string, string] | [string | Error]) {
+    if (args.length === 1) {
+      if (typeof args[0] === 'string') {
+        process.stderr.write(`${chalk.blue(args[0])}\n`)
+      } else {
+        process.stderr.write(`${chalk.red(args[0].message)}\n`)
+      }
+      return
+    }
+    const [tag, content] = args
+    print(tag, content)
+  }
+}
+
+function parseNameAndMode(cmd: string): {
+  name: string
+  mode?: string
+} {
+  const [name, mode] = cmd.split(':')
+  return { name, mode }
 }
 
 function print(tag: string, content: string) {
   const pad = ' '.repeat(Math.max(8 - tag.length, 0))
   process.stderr.write(`→ ${chalk.underline.bold(tag)}${pad} ${content}\n`)
+}
+
+function printCmd(name: string, args: string[]) {
+  process.stderr.write(formatCmd([name, ...args].join(' ')))
 }
 
 const reservedWords = [

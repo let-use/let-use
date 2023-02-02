@@ -19,8 +19,11 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
-    "prepare": "pnpm run use is-ci || pnpm run use husky install",
+    "prepare": "pnpm run use install && pnpm run use husky install",
     "use": "tsx src/index.ts",
     "dev": "pnpm run use esbuild --watch",
     "build": "pnpm run use esbuild",

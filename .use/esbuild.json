@@ -1,0 +1,9 @@
+[
+  "--banner:js=#!/usr/bin/env node",
+  "--bundle",
+  "--format=esm",
+  "--packages=external",
+  "--platform=node",
+  "--outdir=dist",
+  "src/index.ts"
+]

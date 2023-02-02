@@ -8,8 +8,7 @@
   },
   "git": {
     "lint-staged": "latest",
-    "husky": "latest",
-    "is-ci": "latest"
+    "husky": "latest"
   },
   "build": {
     "esbuild": "latest"

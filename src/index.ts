@@ -1,5 +1,5 @@
 import { runTool } from './runner'
 
-const [, , name, ...args] = process.argv
+const [, , cmd, ...args] = process.argv
 
-runTool(name, args)
+runTool(cmd, args)
