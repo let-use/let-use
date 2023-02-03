@@ -7,6 +7,7 @@ import tsup from './tsup'
 import esbuild from './esbuild'
 import webpack from './webpack'
 import ava from './ava'
+import swc from './swc'
 
 export interface ITool {
   name: string
@@ -38,6 +39,7 @@ const TOOLS = collectTools(
   jest,
   lintStaged,
   prettier,
+  swc,
   tsup,
   webpack,
 )
