@@ -5,6 +5,7 @@ import husky from './husky'
 import jest from './jest'
 import lintStaged from './lint-staged'
 import prettier from './prettier'
+import releaseIt from './release-it'
 import stylelint from './stylelint'
 import swc from './swc'
 import tsup from './tsup'
@@ -40,6 +41,7 @@ const TOOLS = collectTools(
   jest,
   lintStaged,
   prettier,
+  releaseIt,
   stylelint,
   swc,
   tsup,
