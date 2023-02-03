@@ -1,3 +1,3 @@
 # Use It
 
-> Bootstrap new projects easily.
+> Manage your config files easily.

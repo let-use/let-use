@@ -4,6 +4,7 @@ import eslint from './eslint'
 import husky from './husky'
 import jest from './jest'
 import lintStaged from './lint-staged'
+import nodemon from './nodemon'
 import parcel from './parcel'
 import prettier from './prettier'
 import releaseIt from './release-it'
@@ -42,6 +43,7 @@ const TOOLS = collectTools(
   husky,
   jest,
   lintStaged,
+  nodemon,
   parcel,
   prettier,
   releaseIt,
