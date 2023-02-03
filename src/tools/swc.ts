@@ -17,8 +17,7 @@ export default defineTool({
 
     if (config) {
       // https://swc.rs/docs/usage/cli#--config-file
-      args.push('--config-file')
-      args.push(config)
+      args.push('--config-file', config)
     }
 
     args.push(...ctx.args)

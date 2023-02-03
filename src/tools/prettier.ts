@@ -14,8 +14,7 @@ export default defineTool({
 
     if (config) {
       // https://prettier.io/docs/en/cli.html#--find-config-path-and---config
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     // https://prettier.io/docs/en/ignore.html
@@ -23,8 +22,7 @@ export default defineTool({
 
     if (ignore) {
       // https://prettier.io/docs/en/cli.html#--find-config-path-and---config
-      args.push('--ignore-path')
-      args.push(ignore)
+      args.push('--ignore-path', ignore)
     }
 
     args.push(...ctx.args)

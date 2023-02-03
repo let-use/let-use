@@ -14,8 +14,7 @@ export default defineTool({
 
     if (config) {
       // https://github.com/okonet/lint-staged#configuration
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     args.push(...ctx.args)

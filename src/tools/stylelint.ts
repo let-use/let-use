@@ -14,8 +14,7 @@ export default defineTool({
 
     if (config) {
       // https://github.com/stylelint/stylelint/blob/main/docs/user-guide/usage/cli.md#--config
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     args.push(...ctx.args)

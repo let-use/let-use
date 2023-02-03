@@ -12,8 +12,7 @@ export default defineTool({
 
     if (config) {
       // https://github.com/release-it/release-it/blob/master/docs/configuration.md#configuration
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     args.push(...ctx.args)

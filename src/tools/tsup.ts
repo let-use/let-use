@@ -17,8 +17,7 @@ export default defineTool({
 
     if (config) {
       // https://tsup.egoist.dev/#using-custom-configuration
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     args.push(...ctx.args)

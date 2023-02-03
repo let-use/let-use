@@ -17,8 +17,7 @@ export default defineTool({
 
     if (config) {
       // https://jestjs.io/docs/configuration
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     args.push(...ctx.args)

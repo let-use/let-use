@@ -13,8 +13,7 @@ export default defineTool({
 
     if (config) {
       // https://eslint.org/docs/latest/use/configure/configuration-files#using-configuration-files
-      args.push('--config')
-      args.push(config)
+      args.push('--config', config)
     }
 
     // https://eslint.org/docs/latest/use/configure/ignore#the-eslintignore-file
@@ -22,8 +21,7 @@ export default defineTool({
 
     if (ignore) {
       // https://eslint.org/docs/latest/use/configure/ignore#using-an-alternate-file
-      args.push('--ignore-path')
-      args.push(ignore)
+      args.push('--ignore-path', ignore)
     }
 
     args.push(...ctx.args)
