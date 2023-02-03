@@ -9,6 +9,7 @@ import releaseIt from './release-it'
 import stylelint from './stylelint'
 import swc from './swc'
 import tsup from './tsup'
+import vite from './vite'
 import webpack from './webpack'
 
 export interface ITool {
@@ -45,6 +46,7 @@ const TOOLS = collectTools(
   stylelint,
   swc,
   tsup,
+  vite,
   webpack,
 )
 
