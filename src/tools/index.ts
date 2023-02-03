@@ -7,6 +7,7 @@ import tsup from './tsup'
 import install from './internal/install'
 import esbuild from './esbuild'
 import webpack from './webpack'
+import ava from './ava'
 
 export interface ITool {
   name: string
@@ -31,6 +32,7 @@ export interface IToolContext {
 }
 
 const TOOLS = collectTools(
+  ava,
   esbuild,
   eslint,
   husky,
