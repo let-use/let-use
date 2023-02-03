@@ -1,8 +1,7 @@
 import { default as fg } from 'fast-glob'
 import { default as chalk } from 'chalk'
-import { join, relative } from 'node:path'
+import { join, relative, resolve } from 'node:path'
 import { getTool, IToolContext } from './tools'
-import { mkdir } from 'node:fs/promises'
 import { spawnAsync } from './utils'
 import fallback from './tools/internal/fallback'
 
@@ -21,10 +20,6 @@ export async function runTool(cmd: string | undefined, args: string[]) {
 }
 
 class ToolContext implements IToolContext {
-  private readonly ensureDir = mkdir(USE_DIR, {
-    recursive: true,
-  })
-
   constructor(
     public name: string,
     private _mode: string | undefined,
@@ -53,23 +48,14 @@ class ToolContext implements IToolContext {
     print(tag, chalk.gray('none'))
   }
 
-  resolve(tag: string, path: string | undefined): string {
-    const dir = path ? join(USE_DIR, path) : USE_DIR
-    const result = relative(process.cwd(), dir)
+  resolve(tag: string, ...path: string[]): string {
+    const result = relative(process.cwd(), resolve(USE_DIR, ...path))
     print(tag, chalk.green(result))
     return result
   }
 
   async execute(args: readonly string[]): Promise<void> {
-    await this.ensureDir
-    const exitCode = await spawnAsync('npm', [
-      'exec',
-      '--prefix',
-      USE_DIR,
-      this.name,
-      '--',
-      ...args,
-    ])
+    const exitCode = await spawnAsync('npm', ['exec', this.name, '--', ...args])
     if (exitCode) {
       process.exit(exitCode)
     }

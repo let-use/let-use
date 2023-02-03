@@ -4,7 +4,6 @@ import lintStaged from './lint-staged'
 import prettier from './prettier'
 import jest from './jest'
 import tsup from './tsup'
-import install from './internal/install'
 import esbuild from './esbuild'
 import webpack from './webpack'
 import ava from './ava'
@@ -22,7 +21,7 @@ export interface IToolContext {
     pattern: string | string[],
   ) => Promise<string | undefined>
   // relative path
-  readonly resolve: (tag: string, path?: string) => string
+  readonly resolve: (tag: string, ...path: string[]) => string
   readonly execute: (args: readonly string[]) => Promise<void>
   readonly log: {
     (msg: string): void
@@ -36,7 +35,6 @@ const TOOLS = collectTools(
   esbuild,
   eslint,
   husky,
-  install,
   jest,
   lintStaged,
   prettier,

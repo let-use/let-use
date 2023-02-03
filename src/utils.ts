@@ -1,4 +1,5 @@
 import { spawn, SpawnOptions } from 'node:child_process'
+import { access, readFile } from 'node:fs/promises'
 
 export async function spawnAsync(
   command: string,
@@ -33,4 +34,17 @@ export function isCI() {
       env.RUN_ID || // TaskCluster, dsari
       false)
   )
+}
+
+export async function pathExists(p: string) {
+  try {
+    await access(p)
+    return true
+  } catch {
+    return false
+  }
+}
+
+export async function readJson(path: string) {
+  return JSON.parse(await readFile(path, 'utf-8'))
 }

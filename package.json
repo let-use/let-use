@@ -23,7 +23,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "prepare": "pnpm run use install && pnpm run use husky install",
+    "prepare": "pnpm run use husky install",
     "use": "tsx src/index.ts",
     "dev": "pnpm run use esbuild --watch",
     "build": "pnpm run use esbuild",
@@ -36,6 +36,12 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "@typescript-eslint/parser": "latest",
+    "esbuild": "latest",
+    "eslint": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "prettier": "latest",
     "tsx": "latest",
     "typescript": "^4.9.5"
   }

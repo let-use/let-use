@@ -1,5 +1,5 @@
 import { defineTool } from './'
-import { readFile } from 'node:fs/promises'
+import { readJson } from '../utils'
 
 export default defineTool({
   name: 'esbuild',
@@ -19,7 +19,7 @@ export default defineTool({
       return
     }
 
-    const config = JSON.parse(await readFile(configPath, 'utf-8')) as string[]
+    const config = (await readJson(configPath)) as string[]
 
     if (!Array.isArray(config)) {
       ctx.log(new Error('invalid config file'))
