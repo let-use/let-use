@@ -9,7 +9,7 @@ export default defineTool({
     const config = await ctx.find('config', [
       '.prettierrc',
       '.prettierrc.+(json|yml|yaml|json5|js|cjs|toml)',
-      '.prettier.config.+(js|cjs)',
+      'prettier.config.+(js|cjs)',
     ])
 
     if (config) {

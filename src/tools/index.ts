@@ -1,13 +1,14 @@
+import ava from './ava'
+import esbuild from './esbuild'
 import eslint from './eslint'
 import husky from './husky'
+import jest from './jest'
 import lintStaged from './lint-staged'
 import prettier from './prettier'
-import jest from './jest'
-import tsup from './tsup'
-import esbuild from './esbuild'
-import webpack from './webpack'
-import ava from './ava'
+import stylelint from './stylelint'
 import swc from './swc'
+import tsup from './tsup'
+import webpack from './webpack'
 
 export interface ITool {
   name: string
@@ -39,6 +40,7 @@ const TOOLS = collectTools(
   jest,
   lintStaged,
   prettier,
+  stylelint,
   swc,
   tsup,
   webpack,
