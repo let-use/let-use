@@ -11,7 +11,7 @@ export default defineTool({
     const config = await ctx.find(
       'config',
       mode
-        ? ['.swcrc', `swc.${mode}.json`, `swc.config.${mode}.json`]
+        ? [`swc.${mode}.json`, `swc.config.${mode}.json`]
         : ['.swcrc', 'swc.json', 'swc.config.json'],
     )
 
