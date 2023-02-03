@@ -5,6 +5,7 @@ export default defineTool({
   name: 'esbuild',
   async run(ctx) {
     const mode = ctx.mode
+
     const configPath = await ctx.find(
       'config',
       mode

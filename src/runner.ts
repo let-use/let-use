@@ -27,9 +27,16 @@ class ToolContext implements IToolContext {
 
   constructor(
     public name: string,
-    public mode: string | undefined,
+    private _mode: string | undefined,
     public readonly args: readonly string[],
   ) {}
+
+  get mode() {
+    if (this._mode) {
+      print('mode', this._mode)
+    }
+    return this._mode
+  }
 
   async find(tag: string, pattern: string | string[]) {
     const results = await fg(pattern, {
