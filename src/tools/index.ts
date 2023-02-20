@@ -10,6 +10,7 @@ import prettier from './prettier'
 import releaseIt from './release-it'
 import stylelint from './stylelint'
 import swc from './swc'
+import tsc from './tsc'
 import tsup from './tsup'
 import vite from './vite'
 import webpack from './webpack'
@@ -49,6 +50,7 @@ const TOOLS = collectTools(
   releaseIt,
   stylelint,
   swc,
+  tsc,
   tsup,
   vite,
   webpack,
