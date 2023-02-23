@@ -13,6 +13,7 @@ import swc from './swc'
 import tsc from './tsc'
 import tsup from './tsup'
 import vite from './vite'
+import vitest from './vitest'
 import webpack from './webpack'
 
 export interface ITool {
@@ -53,6 +54,7 @@ const TOOLS = collectTools(
   tsc,
   tsup,
   vite,
+  vitest,
   webpack,
 )
 
