@@ -12,6 +12,7 @@ import stylelint from './stylelint'
 import swc from './swc'
 import tsc from './tsc'
 import tsup from './tsup'
+import typedoc from './typedoc'
 import vite from './vite'
 import vitest from './vitest'
 import webpack from './webpack'
@@ -53,6 +54,7 @@ const TOOLS = collectTools(
   swc,
   tsc,
   tsup,
+  typedoc,
   vite,
   vitest,
   webpack,
