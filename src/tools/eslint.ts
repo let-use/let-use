@@ -8,7 +8,7 @@ export default defineTool({
     // https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file-formats
     const config = await ctx.find('config', [
       '.eslintrc',
-      '.eslintrc.+(js|cjs|yaml|yml|json)',
+      '.eslintrc.(js|cjs|yaml|yml|json)',
     ])
 
     if (config) {

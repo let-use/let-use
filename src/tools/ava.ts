@@ -8,9 +8,7 @@ export default defineTool({
     // https://github.com/avajs/ava/blob/main/docs/06-configuration.md#using-avaconfig-files
     const config = await ctx.find(
       'config',
-      mode
-        ? [`ava.config.${mode}.+(js|cjs|mjs)`]
-        : ['ava.config.+(js|cjs|mjs)'],
+      mode ? [`ava.config.${mode}.(js|cjs|mjs)`] : ['ava.config.(js|cjs|mjs)'],
     )
 
     const args = tryAddConfigPath(ctx.args, config)

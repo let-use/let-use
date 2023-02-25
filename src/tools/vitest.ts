@@ -9,8 +9,8 @@ export default defineTool({
     const config = await ctx.find(
       'config',
       mode
-        ? [`vitest.config.${mode}.+(js|ts)`, `vite.config.${mode}.+(js|ts)`]
-        : ['vitest.config.+(js|ts)', 'vite.config.+(js|ts)'],
+        ? [`vitest.config.${mode}.(js|ts)`, `vite.config.${mode}.(js|ts)`]
+        : ['vitest.config.(js|ts)', 'vite.config.(js|ts)'],
     )
 
     const args = tryAddConfigPath(ctx.args, config)

@@ -8,7 +8,7 @@ export default defineTool({
     // https://vitejs.dev/config/#configuring-vite
     const config = await ctx.find(
       'config',
-      mode ? [`vite.config.${mode}.+(js|ts)`] : ['vite.config.+(js|ts)'],
+      mode ? [`vite.config.${mode}.(js|ts)`] : ['vite.config.(js|ts)'],
     )
 
     const args = tryAddConfigPath(ctx.args, config)

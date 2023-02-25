@@ -11,8 +11,8 @@ export default defineTool({
     const config = await ctx.find(
       'config',
       mode
-        ? [`jest.config.${mode}.+(js|ts|mjs|cjs|json)`]
-        : ['jest.config.+(js|ts|mjs|cjs|json)'],
+        ? [`jest.config.${mode}.(js|ts|mjs|cjs|json)`]
+        : ['jest.config.(js|ts|mjs|cjs|json)'],
     )
 
     if (config) {

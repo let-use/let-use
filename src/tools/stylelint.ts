@@ -8,8 +8,8 @@ export default defineTool({
     // https://github.com/stylelint/stylelint/blob/main/docs/user-guide/configure.md#configuration
     const config = await ctx.find('config', [
       '.stylelintrc',
-      '.stylelintrc.+(js|json|yaml|yml)',
-      'stylelint.config.+(js|cjs)',
+      '.stylelintrc.(js|json|yaml|yml)',
+      'stylelint.config.(js|cjs)',
     ])
 
     if (config) {

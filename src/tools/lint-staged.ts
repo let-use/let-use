@@ -8,8 +8,8 @@ export default defineTool({
     // https://github.com/okonet/lint-staged#configuration
     const config = await ctx.find('config', [
       '.lintstagedrc',
-      '.lintstagedrc.+(js|mjs|cjs|json|yaml|yml)',
-      'lintstaged.config.+(js|mjs|cjs)',
+      '.lintstagedrc.(js|mjs|cjs|json|yaml|yml)',
+      'lintstaged.config.(js|mjs|cjs)',
     ])
 
     if (config) {

@@ -8,8 +8,8 @@ export default defineTool({
     // https://prettier.io/docs/en/configuration.html
     const config = await ctx.find('config', [
       '.prettierrc',
-      '.prettierrc.+(json|yml|yaml|json5|js|cjs|toml)',
-      'prettier.config.+(js|cjs)',
+      '.prettierrc.(json|yml|yaml|json5|js|cjs|toml)',
+      'prettier.config.(js|cjs)',
     ])
 
     if (config) {
