@@ -1,6 +1,7 @@
 import ava from './ava'
 import esbuild from './esbuild'
 import eslint from './eslint'
+import gulp from './gulp'
 import husky from './husky'
 import jest from './jest'
 import lintStaged from './lint-staged'
@@ -43,6 +44,7 @@ const TOOLS = collectTools(
   ava,
   esbuild,
   eslint,
+  gulp,
   husky,
   jest,
   lintStaged,
