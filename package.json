@@ -4,6 +4,7 @@
   "author": "unbyte <i@shangyes.net>",
   "license": "MIT",
   "type": "module",
+  "description": "Easily manage project configuration files.",
   "keywords": [
     "build-tool",
     "config"
